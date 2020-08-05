@@ -4,28 +4,39 @@ import whatsIcon from '../../assets/images/icons/whatsapp.svg'
 
 import './styles.css';
 
-function TeacherItem() {
+export interface Teacher {
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+  };
+
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem:React.FC<TeacherItemProps> = ({ teacher }) => {
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Professora 1" />
+        <img src={teacher.avatar} alt={teacher.name} />
         <div>
-          <strong>Maria Silva</strong>
-          <span>Química</span>
+  <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
-      <p>
-        Professor ou docente é uma pessoa que ensina ciência, arte, técnica ou outros conhecimentos. <br></br> Para o exercício dessa profissão,
-          requer-se qualificações académicas e pedagógicas, para que consiga transmitir/ensinar da melhor forma possível ao aluno.
-          </p>
+      <p>{teacher.bio}</p>
 
       <footer>
         <p>Preço/hora
-            <strong>R$ 80,00</strong> </p>
-        <button type="button">
+            <strong>R$ {teacher.cost}</strong> </p>
+        <a href={`https://wa.me/${teacher.whatsapp}`}>
           <img src={whatsIcon} alt="Whatsapp" />
               Entrar em contato
-            </button>
+            </a>
       </footer>
     </article>
   )

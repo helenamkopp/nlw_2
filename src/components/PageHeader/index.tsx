@@ -8,6 +8,7 @@ import './styles.css';
 
 interface PageHeaderProps {
   title: string;
+  description?: string; // o ? mostra que é uma propriedade não obrigatória 
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
@@ -22,7 +23,9 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
 
       <div className="header-content">
         <strong>{props.title}</strong>
-
+        {/* { props.description ? <p>{props.description}</p> : null } - se existe uma props.desc vamos mostrar o seu conteudo, se não mostra nulo - uma das formas de fazer isso*/}
+        
+        { props.description && <p>{props.description}</p> }
         {props.children}
       </div>
 
